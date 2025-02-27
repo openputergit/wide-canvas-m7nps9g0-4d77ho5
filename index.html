@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Solo Leveling</title>
+        <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+        <style>
+            body {
+                background-color: #000000;
+                min-height: 100vh;
+                color: #0ea5e9; /* Blue */
+            }
+            .cyber-card {
+                background: rgba(14, 165, 233, 0.1); /* Blue */
+                border: 1px solid #0ea5e9; /* Blue */
+                box-shadow: 0 0 10px rgba(14, 165, 233, 0.3); /* Blue */
+            }
+            .neon-text {
+                text-shadow: 0 0 5px #0ea5e9, 0 0 10px #0ea5e9; /* Blue */
+            }
+            .cyber-button {
+                background: transparent;
+                border: 1px solid #0ea5e9; /* Blue */
+                color: #0ea5e9; /* Blue */
+                transition: all 0.3s ease;
+            }
+            .cyber-button:hover {
+                background: #0ea5e9; /* Blue */
+                color: black;
+                box-shadow: 0 0 15px rgba(14, 165, 233, 0.5); /* Blue */
+            }
+            .modal-content {
+                background: rgba(0, 0, 0, 0.9);
+                border: 1px solid #0ea5e9; /* Blue */
+            }
+            input, select {
+                background: rgba(14, 165, 233, 0.1) !important; /* Blue */
+                border: 1px solid #0ea5e9 !important; /* Blue */
+                color: #0ea5e9 !important; /* Blue */
+            }
+            input::placeholder {
+                color: rgba(14, 165, 233, 0.5); /* Blue */
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container mx-auto px-4 py-8">
+            <!-- Personal Growth Section -->
+            <div id="growthSection">
+                <div class="text-center mb-12">
+                    <h1 class="text-4xl font-bold mb-4 neon-text">Solo Leveling</h1>
+                    <p class="text-xl">Begin your journey to become the strongest</p>
+                </div>
+
+                <div class="cyber-card p-8 rounded-lg max-w-2xl mx-auto">
+                    <div id="taskDisplay" class="text-center">
+                        <i id="taskIcon" class="bi bi-lightning-charge text-5xl mb-4"></i>
+                        <h2 id="taskTitle" class="text-2xl font-bold mb-4">Daily Quest</h2>
+                        <p id="taskDescription" class="text-lg mb-8">Loading your next objective...</p>
+                        <button onclick="generateTask()" class="cyber-button px-8 py-3 rounded-lg">
+                            Generate New Task <i class="bi bi-arrow-clockwise ml-2"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            // Task Generation Logic
+            const tasks = {
+                'Physical': [
+                    {title: "25 Push-ups", description: "Complete 25 push-ups in as few sets as possible.", icon: "bi-heart-pulse"},
+                    {title: "25 Squats", description: "Complete 25 squats, focusing on form and depth.", icon: "bi-person"},
+                    {title: "1km Walk", description: "Walk 1 kilometer at a consistent pace.", icon: "bi-lightning"},
+                    {title: "Light Stretching", description: "Perform a 5-minute light stretching routine.", icon: "bi-body-text"},
+                    {title: "Stair Climbing", description: "Climb stairs for 10 minutes.", icon: "bi-arrow-up-square"}
+                ],
+                'Mental': [
+                    {title: "Mind Mapping", description: "Create a mind map of your goals and how to achieve them.", icon: "bi-brain"},
+                    {title: "Read a Chapter", description: "Read a chapter of a book on a topic you're interested in.", icon: "bi-book"},
+                    {title: "5-Minute Meditation", description: "Meditate for 5 minutes, focusing on mental clarity and focus.", icon: "bi-eye"},
+                    {title: "Learn a New Word", description: "Learn a new word and use it in a sentence.", icon: "bi-translate"},
+                    {title: "Solve a Simple Puzzle", description: "Solve a simple puzzle or riddle.", icon: "bi-puzzle-fill"}
+                ],
+                'Spiritual': [
+                    {title: "Gratitude List", description: "Write down 3 things you are grateful for.", icon: "bi-heart"},
+                    {title: "Nature Appreciation", description: "Spend 10 minutes appreciating nature.", icon: "bi-tree"},
+                    {title: "Positive Affirmations", description: "Repeat positive affirmations for 5 minutes.", icon: "bi-journal-check"},
+                    {title: "Help a Friend", description: "Do something helpful for a friend or family member.", icon: "bi-hand-thumbs-up"},
+                    {title: "Listen to Music", description: "Listen to your favorite music and relax.", icon: "bi-music-note"}
+                ],
+                'Recovery': [
+                    {title: "Gentle Yoga", description: "Engage in a 15-minute gentle yoga session.", icon: "bi-activity"},
+                    {title: "Healthy Snack", description: "Prepare a healthy snack.", icon: "bi-apple"},
+                    {title: "7 Hours of Sleep", description: "Aim for at least 7 hours of sleep.", icon: "bi-moon-stars"},
+                    {title: "Drink Water", description: "Drink a glass of water.", icon: "bi-droplet"},
+                    {title: "Call a Loved One", description: "Call a friend or family member.", icon: "bi-telephone"}
+                ]
+            };
+
+            function generateTask() {
+                const categories = Object.keys(tasks);
+                const randomCategory = categories[Math.floor(Math.random() * categories.length)];
+                const categoryTasks = tasks[randomCategory];
+                const randomTask = categoryTasks[Math.floor(Math.random() * categoryTasks.length)];
+
+                document.getElementById('taskIcon').className = `bi ${randomTask.icon} text-5xl mb-4`;
+                document.getElementById('taskTitle').textContent = randomTask.title;
+                document.getElementById('taskDescription').textContent = randomTask.description;
+            }
+
+            // Initialize
+            window.onload = function() {
+                generateTask();
+            };
+        </script>
+    <script>document.body.addEventListener('wheel', e => { if (!e.ctrlKey) return; e.preventDefault(); return }, { passive: false })</script>
+    <script>document.body.addEventListener('wheel', e => { if (!e.ctrlKey) return; e.preventDefault(); return }, { passive: false })</script>
+	</body>
+    </html>
